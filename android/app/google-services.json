@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "467211707465",
+    "project_id": "money-tracker-80e80",
+    "storage_bucket": "money-tracker-80e80.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467211707465:android:bc515e570a2f97e0f70b98",
+        "android_client_info": {
+          "package_name": "com.moneytracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "467211707465-7a4oqnh4vhrkobisen9nhqeqblqe9fna.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4z8mht2DsRPZCoIL-kJFej59xBvtWGl4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "467211707465-7a4oqnh4vhrkobisen9nhqeqblqe9fna.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467211707465:android:6211ee2bca4da90df70b98",
+        "android_client_info": {
+          "package_name": "com.test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "467211707465-7a4oqnh4vhrkobisen9nhqeqblqe9fna.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4z8mht2DsRPZCoIL-kJFej59xBvtWGl4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "467211707465-7a4oqnh4vhrkobisen9nhqeqblqe9fna.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -178,8 +178,8 @@ export default class Env {
   // CATEGORY MANAGER ----------------------------------------------
 
   //Transaction Type
-  static EXPENSE_TYPE = 'Gasto';
-  static INCOME_TYPE = 'Ingreso';
+  static EXPENSE_TYPE = 'Gastos';
+  static INCOME_TYPE = 'Ingresos';
 
   static categorySchema = {
     name: 'Category',
@@ -341,7 +341,6 @@ export default class Env {
   // delete > means wipe out/erase/destroy from existance
   // remove > means move to somewhere else (e.g trash)
   static deleteCategory(id) {
-    // TODO: Add logic to delete transaction records also.
 
     let realm = new Realm({
       schema: [Env.schema, Env.categorySchema, Env.transactionSchema],
@@ -349,9 +348,24 @@ export default class Env {
 
     let categories = realm.objects('Category');
     let category = categories.filtered(`id = "${id}"`);
+    Env.deleteTransactionsByCategoryId(id);
     if (category !== null) {
       realm.write(() => {
         realm.delete(category);
+      });
+    }
+  }
+
+  static deleteTransactionsByCategoryId(categoryId) {
+    let realm = new Realm({
+      schema: [Env.schema, Env.categorySchema, Env.transactionSchema],
+    });
+
+    let transactions = realm.objects('Transaction');
+    let transaction = transactions.filtered(`categoryId = "${categoryId}"`);
+    if (transaction !== null) {
+      realm.write(() => {
+        realm.delete(transaction);
       });
     }
   }
@@ -534,42 +548,42 @@ export default class Env {
     let defaultCategories = [
       {
         id: Env.getRandomString(16),
-        title: 'Bills',
+        title: 'Cuentas',
         icon: require('../asset/categories/cat-shopping-bills.png'),
         color: '#778BEB',
         type: Env.EXPENSE_TYPE,
       },
       {
         id: Env.getRandomString(16),
-        title: 'Food',
+        title: 'Comida',
         icon: require('../asset/categories/cat-food-chicken.png'),
         color: '#65C6C4',
         type: Env.EXPENSE_TYPE,
       },
       {
         id: Env.getRandomString(16),
-        title: 'Transportation',
+        title: 'Transporte',
         icon: require('../asset/categories/cat-transportation-bus.png'),
         color: '#F19066',
         type: Env.EXPENSE_TYPE,
       },
       {
         id: Env.getRandomString(16),
-        title: 'Hangout',
+        title: 'Salidas',
         icon: require('../asset/categories/cat-food-cocktail.png'),
         color: '#E3646D',
         type: Env.EXPENSE_TYPE,
       },
       {
         id: Env.getRandomString(16),
-        title: 'Phone',
+        title: 'Teléfono',
         icon: require('../asset/categories/cat-gadget-mobile.png'),
         color: '#F19066',
         type: Env.EXPENSE_TYPE,
       },
       {
         id: Env.getRandomString(16),
-        title: 'Health',
+        title: 'Salud',
         icon: require('../asset/categories/cat-medical-hospital.png'),
         color: '#2DB4E7',
         type: Env.EXPENSE_TYPE,
@@ -577,14 +591,14 @@ export default class Env {
 
       {
         id: Env.getRandomString(16),
-        title: 'Salary',
+        title: 'Salario',
         icon: require('../asset/categories/cat-finance-wallet.png'),
         color: '#3498DB',
         type: Env.INCOME_TYPE,
       },
       {
         id: Env.getRandomString(16),
-        title: 'Investments',
+        title: 'Inversiones',
         icon: require('../asset/categories/cat-finance-piggy.png'),
         color: '#FFF3A3',
         type: Env.INCOME_TYPE,
@@ -617,7 +631,7 @@ export default class Env {
 
   static INCOME_ASSETS = [
     {
-      category: 'Finance',
+      category: 'Finanzas',
       icons: [
         {
           icon: require('../asset/categories/cat-finance-atm.png'),
@@ -677,7 +691,7 @@ export default class Env {
 
   static EXPENSE_ASSETS = [
     {
-      category: 'Food',
+      category: 'Comida',
       icons: [
         {
           icon: require('../asset/categories/cat-food-apple.png'),
@@ -742,7 +756,7 @@ export default class Env {
       ],
     },
     {
-      category: 'Transportation',
+      category: 'Transporte',
       icons: [
         {
           icon: require('../asset/categories/cat-transportation-bicycle.png'),
@@ -799,7 +813,7 @@ export default class Env {
       ],
     },
     {
-      category: 'Entertainment',
+      category: 'Entretenimiento',
       icons: [
         {
           icon: require('../asset/categories/cat-entertainment-badminton.png'),
@@ -856,7 +870,7 @@ export default class Env {
       ],
     },
     {
-      category: 'Shopping',
+      category: 'Compras',
       icons: [
         {
           icon: require('../asset/categories/cat-shopping-bag.png'),
@@ -925,7 +939,7 @@ export default class Env {
       ],
     },
     {
-      category: 'Furniture',
+      category: 'Hogar',
       icons: [
         {
           icon: require('../asset/categories/cat-furniture-bathub.png'),
@@ -982,7 +996,7 @@ export default class Env {
       ],
     },
     {
-      category: 'Family',
+      category: 'Familia',
       icons: [
         {
           icon: require('../asset/categories/cat-family-baby.png'),
@@ -1027,7 +1041,7 @@ export default class Env {
       ],
     },
     {
-      category: 'Gadget',
+      category: 'Gadgets',
       icons: [
         {
           icon: require('../asset/categories/cat-gadget-camera.png'),
@@ -1068,7 +1082,7 @@ export default class Env {
       ],
     },
     {
-      category: 'Education',
+      category: 'Educación',
       icons: [
         {
           icon: require('../asset/categories/cat-education-archive.png'),
@@ -1093,7 +1107,7 @@ export default class Env {
       ],
     },
     {
-      category: 'Medical',
+      category: 'Medicina',
       icons: [
         {
           icon: require('../asset/categories/cat-medical-ambulance.png'),

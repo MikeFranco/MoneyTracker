@@ -14,9 +14,6 @@ import Env from './lib/env';
 
 export default class Home extends Component {
   constructor(props) {
-    console.log('******* props *******')
-    console.log(props)
-    console.log('******* props *******')
     super(props);
 
     this.state = {
@@ -33,54 +30,6 @@ export default class Home extends Component {
 
   componentDidMount() {
     this.getTransactions();
-  }
-
-  onNavigateBack = params => {
-    this.getTransactions();
-  };
-  signOut = () => {
-    // TODO: implement double click to prevent unwanted signout
-
-    const backupStatus = Env.readStorage(Env.key.BACKUP_STATUS);
-    if (backupStatus === 'S') {
-      this.doSignOut();
-    } else {
-      Alert.alert(
-        'WARNING',
-        'Please backup your data before sign out or your data will be lost.',
-        [
-          {
-            text: 'CANCEL',
-          },
-          {
-            text: 'SIGN OUT',
-            onPress: () => {
-              this.doSignOut();
-            },
-          },
-        ],
-      );
-    }
-  };
-
-  doSignOut() {
-    Env.reset();
-
-    this.googleService.signOut(() => {
-      // remove local storage
-      Env.writeStorage(Env.key.ACCESS_TOKEN, null);
-      Env.writeStorage(Env.key.USER_INFO, null);
-
-      const resetAction = StackActions.reset({
-        index: 0,
-        actions: [
-          NavigationActions.navigate({
-            routeName: 'signin',
-          }),
-        ],
-      });
-      this.props.navigation.dispatch(resetAction);
-    });
   }
 
   getTransactions() {
@@ -109,9 +58,9 @@ export default class Home extends Component {
     }
 
     if (type === Env.INCOME_TYPE) {
-      return `Ingreso: ${Env.formatCurrency(amount)}`;
+      return `Ingresos: ${Env.formatCurrency(amount)}`;
     } else {
-      return `Gasto: ${Env.formatCurrency(amount)}`;
+      return `Gastos: ${Env.formatCurrency(amount)}`;
     }
   }
 
@@ -162,17 +111,17 @@ export default class Home extends Component {
       <View>
         <View style={Styles.homeResumeBox}>
           <View style={Styles.homeResumeItemBox}>
-            <Text>Ingreso</Text>
+            <Text style={{color: Colors.black}}>Ingresos</Text>
             <Text style={Styles.homeResumeValue}>{this.state.income}</Text>
           </View>
           <View style={Styles.separator}></View>
           <View style={Styles.homeResumeItemBox}>
-            <Text>Gasto</Text>
+            <Text style={{color: Colors.black}}>Gastos</Text>
             <Text style={Styles.homeResumeValue}>{this.state.expense}</Text>
           </View>
           <View style={Styles.separator}></View>
           <View style={Styles.homeResumeItemBox}>
-            <Text>Balance</Text>
+            <Text style={{color: Colors.black}}>Balance</Text>
             <Text style={Styles.homeResumeValue}>{this.state.balance}</Text>
           </View>
         </View>
@@ -186,9 +135,7 @@ export default class Home extends Component {
       <TouchableOpacity
         style={Styles.homeAddButton}
         onPress={() => {
-          this.props.navigation.navigate('addTransaction', {
-            onNavigateBack: this.onNavigateBack,
-          });
+          this.props.navigation.navigate('addTransaction', {});
         }}>
         <Image style={Styles.icon14} source={require('./asset/add.png')} />
       </TouchableOpacity>
@@ -221,7 +168,6 @@ export default class Home extends Component {
                 onPress={() => {
                   this.props.navigation.navigate('transactionDetail', {
                     transactionId: item.transactionId,
-                    onNavigateBack: this.onNavigateBack,
                   });
                 }}>
                 <Cicon
@@ -230,7 +176,7 @@ export default class Home extends Component {
                   icon={item.icon}
                   iconSize={Styles.icon14}
                 />
-                <Text style={{flex: 1, marginHorizontal: 10}}>{item.memo}</Text>
+                <Text style={{flex: 1, marginHorizontal: 10, color: Colors.black}}>{item.memo}</Text>
                 <Text style={{color: Colors.grey}}>{item.amount}</Text>
               </TouchableOpacity>
             );
@@ -262,7 +208,7 @@ export default class Home extends Component {
           style={Styles.illustrationImage}
           source={require('./asset/empty.png')}
         />
-        <Text style={Styles.illustrationImageText}>No Transaction Today</Text>
+        <Text style={Styles.illustrationImageText}>Sin transacciones</Text>
       </View>
     );
   }

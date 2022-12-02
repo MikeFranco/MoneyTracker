@@ -6,31 +6,31 @@ import HomeScreen from './app/home';
 import ProfileScreen from './app/account';
 import SigninScreen from './app/signin';
 import SplashScreen from './app/splash';
+import CategoriesScreen from './app/categories';
+import AddCategoryScreen from './app/add-category';
+import AddTransactionScreen from './app/add-transaction';
+import TransactionDetailScreen from './app/transaction-detail';
+import PieScreen from './app/pie';
 const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-      initialRouteName="splash"
-      screenOptions={{ headerShown: false}}
-      >
+        initialRouteName="splash"
+        screenOptions={{headerShown: false}}>
+        <Stack.Screen name="splash" component={SplashScreen} />
+        <Stack.Screen name="signin" component={SigninScreen} />
+        <Stack.Screen name="home" component={HomeScreen} />
+        <Stack.Screen name="account" component={ProfileScreen} />
+        <Stack.Screen name="categories" component={CategoriesScreen} />
+        <Stack.Screen name="addCategory" component={AddCategoryScreen} />
         <Stack.Screen
-          name="home"
-          component={HomeScreen}
+          name="transactionDetail"
+          component={TransactionDetailScreen}
         />
-      <Stack.Screen
-          name="signin"
-          component={SigninScreen}
-        />
-        <Stack.Screen
-          name="account"
-          component={ProfileScreen}
-        />
-        <Stack.Screen
-          name="splash"
-          component={SplashScreen}
-        />
+        <Stack.Screen name="addTransaction" component={AddTransactionScreen} />
+        <Stack.Screen name="pie" component={PieScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

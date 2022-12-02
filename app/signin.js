@@ -18,8 +18,8 @@ export default class Signin extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      name: '',
+      email: 'testemail',
+      name: 'test name',
       isSignInWithEmail: true,
       keyboardShow: false,
     };
@@ -37,15 +37,7 @@ export default class Signin extends Component {
   }
 
   redirectToHome(userInfo) {
-    ToastAndroid.show(`Welcome, ${userInfo.user.name}`, ToastAndroid.SHORT);
-    const resetAction = StackActions.reset({
-      index: 0,
-      actions: [
-        NavigationActions.navigate({
-          routeName: 'home',
-        }),
-      ],
-    });
+    ToastAndroid.show(`Bienvenido, ${userInfo.user.name}`, ToastAndroid.SHORT);
     this.props.navigation.navigate('home');
   }
 
@@ -88,8 +80,11 @@ export default class Signin extends Component {
         email: this.state.email,
         name: this.state.name,
         photo: null,
-      }
+        isGoogle: false,
+      },
     };
+    Env.writeStorage(Env.key.USER_INFO, userInfo);
+    Env.initDefaultCategories();
     this.redirectToHome(userInfo);
   };
 
@@ -97,7 +92,7 @@ export default class Signin extends Component {
     const {isSignInWithEmail, email, name} = this.state;
     return (
       <View style={[Styles.sceneBox, Styles.center]}>
-        <TouchableOpacity style={Styles.googleButton} onPress={this.signIn}>
+        <TouchableOpacity style={Styles.googleButton} onPress={this.signIn} disabled={true}>
           <Image style={Styles.icon24} source={require('./asset/google.png')} />
           <Text style={Styles.googleButtonText}>Iniciar sesión con Google</Text>
         </TouchableOpacity>
@@ -155,28 +150,24 @@ export default class Signin extends Component {
                   flex: 1,
                   textColor: 'black',
                   backgroundColor: Colors.white,
-                  maxWidth: 100
+                  maxWidth: 100,
                 }}
                 onPress={() =>
                   this.setState({isSignInWithEmail: !isSignInWithEmail})
                 }>
-                <View
-                  style={Styles.emailButtonOptionContainer}>
-                  <Text
-                    style={Styles.emailButtonOption}>
-                    Cancelar
-                  </Text>
+                <View style={Styles.emailButtonOptionContainer}>
+                  <Text style={Styles.emailButtonOption}>Cancelar</Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                style={{flex: 1, backgroundColor: Colors.primary, maxWidth: 150}}
+                style={{
+                  flex: 1,
+                  backgroundColor: Colors.primary,
+                  maxWidth: 150,
+                }}
                 onPress={() => this.signInwithEmail()}>
-                <View
-                  style={Styles.emailButtonOptionContainer}>
-                  <Text
-                    style={Styles.emailButtonOption}>
-                    Iniciar sesión
-                  </Text>
+                <View style={Styles.emailButtonOptionContainer}>
+                  <Text style={Styles.emailButtonOption}>Iniciar sesión</Text>
                 </View>
               </TouchableOpacity>
             </View>

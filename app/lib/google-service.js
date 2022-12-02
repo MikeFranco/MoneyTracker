@@ -32,9 +32,6 @@ export default class GoogleService {
       
       // signin
       const userInfo = await GoogleSignin.signIn();
-      console.log('******* userInfo ********');
-      console.log(userInfo);
-      console.log('******* userInfo ********');
       Env.writeStorage(Env.key.USER_INFO, userInfo);
 
       // check existing backup
@@ -65,9 +62,6 @@ export default class GoogleService {
 
       onSuccess(userInfo, fileId, backupData);
     } catch (error) {
-      console.log('******* error ********');
-      console.log(error);
-      console.log('******* error ********');
       this._handleError(error);
     }
   }
@@ -79,9 +73,6 @@ export default class GoogleService {
 
       onSuccess();
     } catch (error) {
-      console.log('******* error ********');
-      console.log(error);
-      console.log('******* error ********');
       this._handleError(error);
     }
   }

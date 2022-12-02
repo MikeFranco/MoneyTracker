@@ -19,7 +19,7 @@ export default class AddCategory extends Component {
     constructor(props) {
         super(props);
 
-        this.transactionType = this.props.navigation.getParam('transactionType');
+        this.transactionType = this.props.route.params.transactionType;
         this.categoryAssets = (this.transactionType === Env.EXPENSE_TYPE) ? Env.EXPENSE_ASSETS : Env.INCOME_ASSETS;
 
         this.state = {
@@ -37,7 +37,7 @@ export default class AddCategory extends Component {
         let title = this.state.title;
 
         if (title === null || title === '') {
-            ToastAndroid.show('Please input the category title', ToastAndroid.SHORT);
+            ToastAndroid.show('Por favor, agrega un título a la categoría', ToastAndroid.SHORT);
             return;
         }
 
@@ -52,9 +52,11 @@ export default class AddCategory extends Component {
 
         Env.changeBackupStatus();
 
-        ToastAndroid.show('Category added', ToastAndroid.SHORT);
-        this.props.navigation.state.params.onNavigateBack(null);
-        this.props.navigation.goBack();
+        ToastAndroid.show('Categoría agregada', ToastAndroid.SHORT);
+        this.props.navigation.reset({
+            index: 0,
+            routes: [{name: 'categories'}],
+          });
     }
 
     iconKey(key, key2){
@@ -88,7 +90,8 @@ export default class AddCategory extends Component {
                     style={Styles.addTitleInput} 
                     autoCorrect={false}
                     underlineColorAndroid={Colors.primary}
-                    placeholder={'Category Title'}
+                    placeholder={'Título de la categoría'}
+                    placeholderTextColor={Colors.grey} 
                     onChangeText={(text) => this.setState({title: text})}
                     value={this.state.title}
                 />
@@ -108,7 +111,7 @@ export default class AddCategory extends Component {
                             return(
                                 <View key={key}>
                                     <View style={Styles.addCategoryGroup}>
-                                        <Text>{item.category}</Text>
+                                        <Text style={{color: Colors.black}}>{item.category}</Text>
                                     </View>
                                     <View style={Styles.addIconListBox}>
                                         {

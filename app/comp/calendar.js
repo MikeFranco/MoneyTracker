@@ -96,7 +96,7 @@ export default class Calendar extends Component {
                                         <TouchableOpacity key={key} onPress={() => this.onMonthPress(key, val) }
                                             style={Styles.calendarMonthBox}>
                                             <View style={this.state.month == key ? Styles.calendarMonthSelected : null} >
-                                                <Text style={this.state.month == key ? Styles.calendarTextSelected : null}>{val}</Text>
+                                                <Text style={this.state.month == key ? Styles.calendarTextSelected : {color: Colors.grey}}>{val}</Text>
                                             </View>
                                         </TouchableOpacity>
                                     );

@@ -128,7 +128,7 @@ export const Styles = StyleSheet.create({
     height: 50,
     paddingHorizontal: 20,
     borderRadius: 5,
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.grey,
     flexDirection: 'row',
     alignItems: 'center',
     elevation: 3,
@@ -141,6 +141,7 @@ export const Styles = StyleSheet.create({
   signInwithEmailInput: {
     flex: 1,
     height: 5,
+    color: Colors.black
   },
   emailButton: {
     height: 50,
@@ -222,18 +223,19 @@ export const Styles = StyleSheet.create({
   },
   accountPhotoBox: {
     width: 100,
-    height: 100,
-    borderRadius: 35,
+    height: 105,
+    borderRadius: 50,
     position: 'absolute',
     left: 15,
-    top: 60,
+    top: 55,
     elevation: 5,
-    backgroundColor: Colors.darkGrey,
+    backgroundColor: Colors.white,
   },
   accountPhoto: {
     width: 100,
     height: 100,
-    borderRadius: 35,
+    marginTop: 5,
+    borderRadius: 50,
   },
   accountNameBox: {
     marginLeft: 130,
@@ -271,6 +273,7 @@ export const Styles = StyleSheet.create({
   accountMenuText: {
     fontSize: Fonts.h4,
     fontWeight: 'bold',
+    color: Colors.black,
   },
   versionTextBox: {
     height: 60,
@@ -300,7 +303,7 @@ export const Styles = StyleSheet.create({
   },
   tabSelected: {
     borderBottomWidth: 3,
-    borderBottomColor: Colors.black,
+    borderBottomColor: Colors.white,
   },
 
   listIconBox: {
@@ -341,6 +344,7 @@ export const Styles = StyleSheet.create({
   addTitleInput: {
     flex: 1,
     height: 50,
+    color: Colors.black
   },
   addCategoryGroup: {
     alignItems: 'center',
@@ -349,11 +353,13 @@ export const Styles = StyleSheet.create({
   addIconListBox: {
     flexWrap: 'wrap',
     flexDirection: 'row',
+    color: Colors.black
   },
   addIconBox: {
     width: Screen.width / 4, // TODO: calculate width to find best row item
     marginVertical: 15,
     alignItems: 'center',
+    color: Colors.black
   },
 
   illustrationImage: {
@@ -362,7 +368,7 @@ export const Styles = StyleSheet.create({
     marginVertical: 15,
   },
   illustrationImageText: {
-    color: Colors.grey,
+    color: Colors.black,
   },
 
   homeScroll: {
@@ -385,11 +391,13 @@ export const Styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    color: Colors.black
   },
   homeResumeValue: {
     fontSize: Fonts.h4,
     fontWeight: 'bold',
     marginTop: 5,
+    color: Colors.grey
   },
   separator: {
     width: 1,
@@ -431,6 +439,7 @@ export const Styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 20,
+    color: Colors.black
   },
 
   comboTypeBox: {
@@ -466,6 +475,7 @@ export const Styles = StyleSheet.create({
     flex: 1,
     height: 50,
     paddingHorizontal: 10,
+    color: Colors.black
   },
   boardKeyBox: {
     flex: 1,
@@ -479,10 +489,12 @@ export const Styles = StyleSheet.create({
     borderRightWidth: 1,
     borderBottomWidth: 1,
     borderColor: Colors.lightGrey,
+    color: Colors.black
   },
   boardDigit: {
     fontSize: Fonts.h3,
     fontWeight: 'bold',
+    color: Colors.black
   },
 
   detailBox: {
@@ -503,6 +515,7 @@ export const Styles = StyleSheet.create({
   detailTitle: {
     fontSize: Fonts.h2,
     fontWeight: 'bold',
+    color: Colors.black
   },
   detailItemBox: {
     height: 50,
@@ -516,6 +529,7 @@ export const Styles = StyleSheet.create({
   },
   detailValue: {
     fontSize: Fonts.h4,
+    color: Colors.black
   },
   detailEditButton: {
     position: 'absolute',
